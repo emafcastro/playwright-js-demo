@@ -1,0 +1,75 @@
+{
+    "home": {
+        "yourFeedLink": "",
+        "globalFeedLink": "",
+        "authorLinks": "",
+        "posts": ".article-preview",
+        "favoriteButtons": "",
+        "popularTagsSection": ""
+    },
+    "navbar": {
+        "homeLink": "",
+        "newArticleLink": "//li/a[contains(text(),'New Article')]",
+        "settingsLink": "",
+        "profileLink": "",
+        "signInLink": "//li/a[contains(text(),'Sign in')]",
+        "signOutLink": "//li/a[contains(text(),'Sign Out')]",
+        "searchInput": "",
+        "searchButton": ""
+    },
+    "signin": {
+        "emailInput": "[name='username']",
+        "passwordInput": "id=id_password",
+        "signInButton": "//button[contains(text(),'Sign in')]",
+        "errorMessagesText": ".error-messages"
+    },
+    "signup": {
+        "usernameInput": "",
+        "emailInput": "",
+        "passwordInput": "",
+        "signUpButton": ""
+    },
+    "article-form": {
+        "titleInput": "id=id_title",
+        "summaryInput": "id=id_summary",
+        "contentInput": "id=id_content",
+        "tagsInput": "id=id_tags",
+        "errorMessagesText": ".error-messages",
+        "publishArticleButton": "//button[contains(text(),'Publish Article')]",
+        "saveArticleButton": "//button[contains(text(),'Save Article')]",
+        "suggestedTagSection": "id=tags-list"
+    },
+    "article-detail": {
+        "titleText": ".container > h1",
+        "authorLink": ".article-meta > div > a",
+        "postDateText": ".info > span",
+        "followAuthorButton": "id=follow-top",
+        "favoritePostButton": "id=favorite-top",
+        "editPostButton": "id=edit-article",
+        "deletePostButton": "id=delete-article"
+    },
+    "comment": {
+        "commentTextArea": "",
+        "postCommentButton": "",
+        "editCommentButton": "",
+        "deleteCommentButton": "",
+        "saveCommentButton": ""
+    },
+    "profile": {
+        "profileImageInput": "",
+        "usernameInput": "",
+        "bioInput": "",
+        "emailInput": "",
+        "passwordInput": "",
+        "updateSettingsButton": ""
+    },
+    "settings": {
+        "profileImage": "",
+        "authorText": "",
+        "bioText": "",
+        "editProfileButton": "",
+        "followUserButton": "",
+        "myArticlesLink": "",
+        "favoritedArticlesLink": ""
+    }
+}

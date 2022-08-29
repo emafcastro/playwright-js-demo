@@ -1,0 +1,49 @@
+[{
+    "type": "only title",
+    "title": "Test Article (only title)",
+    "summary": "",
+    "content": "",
+    "tags": ""
+},
+{
+    "type": "title and summary",
+    "title": "Test Article (title and summary)",
+    "summary": "Test Summary",
+    "content": "",
+    "tags": ""
+},
+{
+    "type": "title and content",
+    "title": "Test Article (title and content)",
+    "summary": "",
+    "content": "#Test Content",
+    "tags": ""
+},
+{
+    "type": "title and tags",
+    "title": "Test Article (title and content)",
+    "summary": "",
+    "content": "",
+    "tags": "testTag"
+},
+{
+    "type": "title, summary and content",
+    "title": "Test Article (title, summary and content)",
+    "summary": "Test Summary",
+    "content": "#Test Content",
+    "tags": ""
+},
+{
+    "type": "title, summary and tags",
+    "title": "Test Article (title, summary and tags)",
+    "summary": "Test Summary",
+    "content": "",
+    "tags": "testTag"
+},
+{
+    "type": "title, content and tags",
+    "title": "Test Article (title, content and tags)",
+    "summary": "",
+    "content": "#Test Content",
+    "tags": "testTag"
+}]
