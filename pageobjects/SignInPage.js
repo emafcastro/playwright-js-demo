@@ -1,4 +1,4 @@
-const selectors = require("../selectors.json");
+const selectors = require("./selectors.json");
 
 export class SignInPage {
     constructor(page) {

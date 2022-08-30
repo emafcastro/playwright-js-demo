@@ -1,36 +1,36 @@
 import { SessionHandler } from "../session/SessionHandler";
 import { logResponse } from "../utils/LogGenerator";
 
-export class SignInAPI{
-    constructor(page){
+export class SignUpAPI {
+    constructor(page) {
         this.page = page;
         this.session = new SessionHandler(this.page.context());
         this.csrftoken = "";
     }
 
-    async signInUser(user){
+    async signUpUser(user){
         await this.getCSRFToken();
-        let payload = await this.generatePayload(user);
-        let headersRequest = await this.generateHeaders();
-        const signInResponse = await this.page.request.post("https://realworld-djangoapp.herokuapp.com/login/", {
+        let payload = this.generatePayload(user);
+        let headersRequest = this.generateHeaders();
+        const signUpResponse = await this.page.request.post("https://realworld-djangoapp.herokuapp.com/register/", {
             form: payload,
             headers: headersRequest,
         });
-        await logResponse(signInResponse, "debugging/signin/signin.json")
-        return signInResponse;
+        await logResponse(signUpResponse, "debugging/signup/signup.json")
+        return signUpResponse;
     }
 
-    async generatePayload(user){
+    generatePayload(user){
         return {
             csrfmiddlewaretoken: this.csrftoken,
-            username: user.email,
+            name: user.username,
+            email: user.email,
             password: user.password,
         }
     }
 
-    async generateHeaders(){
+    generateHeaders(){
         return {
-            "X-CSRFToken": this.csrftoken,
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         }
     }

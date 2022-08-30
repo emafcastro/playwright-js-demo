@@ -2,6 +2,7 @@ const { test, expect } = require("@playwright/test");
 const { generateEmailForCharacters } = require("./../utils/TextGenerator");
 import { SignInPage } from "../pageobjects/SignInPage";
 import { NavBarPage } from "../pageobjects/NavBarPage";
+const signInUser = require("../input-files/signInUser.json");
 
 test.describe("Login access", () => {
     test("Expected url", async ({ page }) => {
@@ -24,7 +25,7 @@ test.describe("Login tests", () => {
     test.describe("Valid interactions in Sign In", () => {
         test("Valid Credentials", async () => {
             // Sign in with valid credentials and verification that the user is logged in
-            let page = await signInPage.signInWithCredentials("automation@test.com", "Test1234");
+            let page = await signInPage.signInWithCredentials(signInUser.email, signInUser.password);
             const userIsLoggedIn = await new NavBarPage(page).isUserLoggedIn();
             expect(userIsLoggedIn).toBeTruthy();
         });

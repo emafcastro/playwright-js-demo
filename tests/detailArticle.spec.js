@@ -5,7 +5,7 @@ import { ArticleDetailPage } from "../pageobjects/ArticleDetailPage";
 import { HomePage } from "../pageobjects/HomePage";
 const article = require("../input-files/article.json");
 const editArticle = require("../input-files/articleEdit.json");
-const authorUser = require("../input-files/authorUser.json");
+const detailUser = require("../input-files/detailUser.json");
 const likeUser = require("../input-files/likeUser.json");
 import { getTodayDate } from "../utils/ArticleDateGenerator";
 import { ArticleFormPage } from "../pageobjects/ArticleFormPage";
@@ -16,7 +16,7 @@ test.describe("Article detail tests", () => {
         const context = await browser.newContext();
         page = await context.newPage();
         const signInAPI = new SignInAPI(page);
-        const signInResponse = await signInAPI.signInUser(authorUser);
+        const signInResponse = await signInAPI.signInUser(detailUser);
         expect(signInResponse.ok()).toBeTruthy();
     });
     test.describe("Tests using the author of the article", () => {
@@ -33,7 +33,7 @@ test.describe("Article detail tests", () => {
 
             // There are two author elements present in the page, so the validation needs to be done against an array of elements
             await expect(articleDetailPage.authorLink).toHaveCount(2);
-            await expect(articleDetailPage.authorLink).toHaveText([authorUser.username, authorUser.username]);
+            await expect(articleDetailPage.authorLink).toHaveText([detailUser.username, detailUser.username]);
 
             // The same applies for the dates
             let today = getTodayDate();
@@ -83,7 +83,7 @@ test.describe("Article detail tests", () => {
         test.afterEach(async () => {
             await page.context().clearCookies();
             const signInAPI = new SignInAPI(page);
-            const signInResponse = await signInAPI.signInUser(authorUser);
+            const signInResponse = await signInAPI.signInUser(detailUser);
             expect(signInResponse.ok()).toBeTruthy();
             await page.goto(articleURL);
             const articleID = await articleDetailPage.getArticleID();
@@ -98,14 +98,14 @@ test.describe("Article detail tests", () => {
 
             // There are two author elements present in the page, so the validation needs to be done against an array of elements
             await expect(articleDetailPage.authorLink).toHaveCount(2);
-            await expect(articleDetailPage.authorLink).toHaveText([authorUser.username, authorUser.username]);
+            await expect(articleDetailPage.authorLink).toHaveText([detailUser.username, detailUser.username]);
 
             // The same applies for the dates
             let today = getTodayDate(); // May fail if the article date is different
             await expect(articleDetailPage.postDateText).toHaveText([today, today]);
 
-            await expect(articleDetailPage.followAuthorButton).toHaveCount(2);
-            await expect(articleDetailPage.favoritePostButton).toHaveCount(2);
+            await expect(articleDetailPage.followAuthorButton).toBeVisible();
+            await expect(articleDetailPage.favoritePostButton).toBeVisible();
             await expect(articleDetailPage.editPostButton).not.toBeVisible();
             await expect(articleDetailPage.deletePostButton).not.toBeVisible();
         });

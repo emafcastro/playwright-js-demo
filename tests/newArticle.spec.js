@@ -43,7 +43,7 @@ test.describe("Article tests", () => {
         });
 
         for (const optional of articleOptionals) {
-            test.skip("Create article with " + optional.type, async () => {
+            test("Create article with " + optional.type, async () => {
                 await articleFormPage.completeForm(optional, "ADD");
                 const articleDetailPage = new ArticleDetailPage(page);
                 expect(await articleDetailPage.titleText.textContent()).toBe(optional.title);
@@ -59,7 +59,7 @@ test.describe("Article tests", () => {
         // Create article with different options
         test("Autocomplete tags", async () => {
             await articleFormPage.tagsInput.fill("testTag");
-            expect(await articleFormPage.getSuggestedTagList()).toContainText(["testTag"]);
+            await expect(articleFormPage.getSuggestedTagList()).toContainText(["testTag"]);
         });
     });
     test.describe("Invalid interactions", () => {
