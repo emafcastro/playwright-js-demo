@@ -72,19 +72,19 @@ test.describe("Article tests", () => {
         test("should not allow to create an article with empty spaces on the title", async () => {
             await articleFormPage.titleInput.fill("  ");
             await articleFormPage.publishArticleButton.click();
-            expect(articleFormPage.errorMessagesText).toHaveText("* This field is required.");
+            await expect(articleFormPage.errorMessagesText).toHaveText("* This field is required.");
         });
         test("should not autocomplete tags if there are not matching tags", async () => {
             await articleFormPage.tagsInput.type("sarasa", {delay: 100});
-            expect(articleFormPage.suggestedTagSection).not.toBeVisible();
+            await expect(articleFormPage.suggestedTagSection).not.toBeVisible();
         });
         test("should allow it add only 120 characters in title field", async () => {
             const textTitle = maketoken(120);
             await articleFormPage.titleInput.fill(textTitle);
-            expect(articleFormPage.titleInput).toHaveValue(textTitle);
+            await expect(articleFormPage.titleInput).toHaveValue(textTitle);
             const newTextTitle = textTitle + "morecharacters";
             await articleFormPage.titleInput.fill(newTextTitle);
-            expect(articleFormPage.titleInput).toHaveValue(textTitle);
+            await expect(articleFormPage.titleInput).toHaveValue(textTitle);
         });
     });
 });
