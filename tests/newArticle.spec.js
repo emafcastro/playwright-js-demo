@@ -8,6 +8,7 @@ import { ArticleAPI } from "../api/ArticleAPI";
 const article = require("../input-files/article.json");
 const articleOptionals = require("../input-files/articleOptionals.json");
 const authorUser = require("../input-files/authorUser.json");
+const config = require("../playwright.config");
 
 test.describe("Article tests", () => {
     let page;
@@ -23,7 +24,7 @@ test.describe("Article tests", () => {
             const navBarPage = new NavBarPage(page);
             await navBarPage.goTo();
             await navBarPage.goToNewArticlePage();
-            expect(page).toHaveURL("https://realworld-djangoapp.herokuapp.com/new/");
+            expect(page).toHaveURL(`${config.use.baseURL}/new/`);
         });
     });
     test.describe("Article creation tests", () => {
@@ -58,8 +59,8 @@ test.describe("Article tests", () => {
         });
         // Create article with different options
         test("Autocomplete tags", async () => {
-            await articleFormPage.tagsInput.fill("testTag");
-            await expect(articleFormPage.getSuggestedTagList()).toContainText(["testTag"]);
+            await articleFormPage.tagsInput.type("testTag", {delay: 100});
+            await expect(await articleFormPage.getSuggestedTagList()).toContainText(["testTag"]);
         });
     });
     test.describe("Invalid interactions", () => {
@@ -74,7 +75,7 @@ test.describe("Article tests", () => {
             expect(articleFormPage.errorMessagesText).toHaveText("* This field is required.");
         });
         test("should not autocomplete tags if there are not matching tags", async () => {
-            await articleFormPage.tagsInput.fill("sarasa");
+            await articleFormPage.tagsInput.type("sarasa", {delay: 100});
             expect(articleFormPage.suggestedTagSection).not.toBeVisible();
         });
         test("should allow it add only 120 characters in title field", async () => {

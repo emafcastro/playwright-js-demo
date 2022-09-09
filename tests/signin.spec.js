@@ -3,6 +3,8 @@ const { generateEmailForCharacters } = require("./../utils/TextGenerator");
 import { SignInPage } from "../pageobjects/SignInPage";
 import { NavBarPage } from "../pageobjects/NavBarPage";
 const signInUser = require("../input-files/signInUser.json");
+const config = require("../playwright.config");
+
 
 test.describe("Login access", () => {
     test("Expected url", async ({ page }) => {
@@ -10,7 +12,7 @@ test.describe("Login access", () => {
         const navBarPage = new NavBarPage(page);
         await navBarPage.goTo();
         await navBarPage.goToSignInPage();
-        await expect(page).toHaveURL("https://realworld-djangoapp.herokuapp.com/login/");
+        await expect(page).toHaveURL(`${config.use.baseURL}/login/`);
     });
 });
 

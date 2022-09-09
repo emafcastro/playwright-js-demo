@@ -1,5 +1,6 @@
 import { SessionHandler } from "../session/SessionHandler";
 import { logResponse } from "../utils/LogGenerator";
+const config = require("../playwright.config");
 
 export class SignInAPI{
     constructor(page){
@@ -12,7 +13,7 @@ export class SignInAPI{
         await this.getCSRFToken();
         let payload = await this.generatePayload(user);
         let headersRequest = await this.generateHeaders();
-        const signInResponse = await this.page.request.post("https://realworld-djangoapp.herokuapp.com/login/", {
+        const signInResponse = await this.page.request.post(`${config.use.baseURL}/login/`, {
             form: payload,
             headers: headersRequest,
         });

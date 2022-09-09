@@ -33,7 +33,7 @@
         "titleInput": "id=id_title",
         "summaryInput": "id=id_summary",
         "contentInput": "id=id_content",
-        "tagsInput": "id=id_tags",
+        "tagsInput": "[name='tags']",
         "errorMessagesText": ".error-messages",
         "publishArticleButton": "//button[contains(text(),'Publish Article')]",
         "saveArticleButton": "//button[contains(text(),'Save Article')]",

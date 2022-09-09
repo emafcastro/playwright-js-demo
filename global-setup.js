@@ -1,4 +1,4 @@
-const { chromium } = require("@playwright/test");
+const { chromium, expect } = require("@playwright/test");
 import { SignUpAPI } from "./api/SignUpAPI";
 import { SignInAPI } from "./api/SignInAPI";
 const detailUser = require("./input-files/detailUser.json");

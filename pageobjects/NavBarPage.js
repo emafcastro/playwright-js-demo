@@ -1,4 +1,5 @@
 const selectors = require("./selectors.json");
+const signInUser = require("../input-files/signInUser.json");
 
 export class NavBarPage{
     constructor(page){
@@ -11,6 +12,7 @@ export class NavBarPage{
         this.signOutLink = page.locator(selectors.navbar.signOutLink);
         this.searchInput = page.locator(selectors.navbar.searchInput);
         this.searchButton = page.locator(selectors.navbar.searchButton);
+        this.usernameLink = page.locator(`//li/a[contains(text(),'${signInUser.username}')]`);
     }
 
     async goTo(){
@@ -29,6 +31,6 @@ export class NavBarPage{
 
     async isUserLoggedIn(){
         await this.page.waitForLoadState("networkidle")
-        return await this.signOutLink.isVisible();
+        return await this.usernameLink.isVisible();
     }
 }

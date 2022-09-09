@@ -23,7 +23,7 @@ export async function logResponse(response, path) {
 
 export function showResponses() {
     page.on("response", (response) => {
-        if (response.url().includes("realworld")) {
+        if (response.url().includes("localhost")) {
             console.log(
                 "status: " + response.status() + ", url: " + response.url() + ", headers: " + JSON.stringify(response.headers())
             );

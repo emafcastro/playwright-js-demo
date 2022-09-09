@@ -15,7 +15,7 @@ export class SessionHandler {
         return {
             name: "csrftoken",
             value: maketoken(64),
-            domain: "realworld-djangoapp.herokuapp.com",
+            domain: "localhost:8000",
             path: "/",
         }
     }

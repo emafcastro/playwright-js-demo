@@ -1,10 +1,12 @@
+const config = require("../playwright.config");
+
 export class ArticleAPI {
     constructor(page) {
         this.page = page;
     }
 
     async deleteArticle(articleID) {
-        let url = "https://realworld-djangoapp.herokuapp.com/article/delete/" + articleID + "/";
+        let url = `${config.use.baseURL}/article/delete/` + articleID + "/";
         let headers = await this.generateHeaders();
         const deleteArticleResponse = await this.page.request.delete(url, { headers: headers });
         return deleteArticleResponse;
@@ -13,7 +15,7 @@ export class ArticleAPI {
     async createArticle(article) {
         let payload = await this.generatePayload(article);
         let headers = await this.generateHeaders();
-        const postArticleResponse = await this.page.request.post("https://realworld-djangoapp.herokuapp.com/new/", {
+        const postArticleResponse = await this.page.request.post(`${config.use.baseURL}/new/`, {
             form: payload,
             headers: headers,
         });
