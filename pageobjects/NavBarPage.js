@@ -33,4 +33,10 @@ export class NavBarPage{
         await this.page.waitForLoadState("networkidle")
         return await this.usernameLink.isVisible();
     }
+
+    async searchArticle(criteria){
+        await this.searchInput.fill(criteria);
+        await this.searchButton.click();
+        await this.page.waitForLoadState("networkidle");
+    }
 }

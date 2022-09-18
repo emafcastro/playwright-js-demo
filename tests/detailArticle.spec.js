@@ -7,7 +7,7 @@ const article = require("../input-files/article.json");
 const editArticle = require("../input-files/articleEdit.json");
 const detailUser = require("../input-files/detailUser.json");
 const likeUser = require("../input-files/likeUser.json");
-import { getTodayDate } from "../utils/ArticleDateGenerator";
+import { getTodayDate } from "../utils/ArticleProperties";
 import { ArticleFormPage } from "../pageobjects/ArticleFormPage";
 
 test.describe("Article detail tests", () => {

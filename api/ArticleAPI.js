@@ -1,4 +1,5 @@
 const config = require("../playwright.config");
+import { logResponse } from "../utils/LogGenerator";
 
 export class ArticleAPI {
     constructor(page) {
@@ -20,6 +21,7 @@ export class ArticleAPI {
             headers: headers,
         });
         let headersResponse = postArticleResponse.headers();
+        await logResponse(postArticleResponse, "debugging/article/create-article.json")
         let urlRedirect = headersResponse["hx-redirect"];
         return urlRedirect;
     }
