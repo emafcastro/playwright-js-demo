@@ -5,7 +5,9 @@
         "authorLinks": "div.article-preview > div.article-meta a",
         "posts": ".article-preview",
         "favoriteButtons": "",
-        "popularTagsSection": ""
+        "popularTagsSection": "",
+        "noArticlesFoundText":"#no-articles > h4",
+        "clearResultsLink":"#result > h3 > a"
     },
     "navbar": {
         "homeLink": "",
@@ -14,6 +16,8 @@
         "profileLink": "",
         "signInLink": "//li/a[contains(text(),'Sign in')]",
         "signOutLink": "//li/a[contains(text(),'Sign Out')]",
+        "signUpLink": "//li/a[contains(text(),'Sign up')]",
+        "usernameLink": "a:right-of(:text('Settings'))",
         "searchInput": "div.nav > input",
         "searchButton": "div.nav > button"
     },

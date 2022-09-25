@@ -8,9 +8,9 @@ export class HomePage {
         this.globalFeedLink = page.locator(selectors.home.globalFeedLink);
         this.authorLinks = page.locator(selectors.home.authorLinks);
         this.favoriteButtons = page.locator(selectors.home.favoriteButtons);
-        this.popularTagsSection = page.locator(
-            selectors.home.popularTagsSection
-        );
+        this.popularTagsSection = page.locator(selectors.home.popularTagsSection);
+        this.noArticlesFoundText = page.locator(selectors.home.noArticlesFoundText);
+        this.clearResultsLink = page.locator(selectors.home.clearResultsLink);
     }
 
     async getFirstPostTitle() {

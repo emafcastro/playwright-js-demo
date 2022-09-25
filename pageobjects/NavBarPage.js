@@ -10,9 +10,10 @@ export class NavBarPage{
         this.profileLink = page.locator(selectors.navbar.profileLink);
         this.signInLink = page.locator(selectors.navbar.signInLink);
         this.signOutLink = page.locator(selectors.navbar.signOutLink);
+        this.signUpLink = page.locator(selectors.navbar.signUpLink);
         this.searchInput = page.locator(selectors.navbar.searchInput);
         this.searchButton = page.locator(selectors.navbar.searchButton);
-        this.usernameLink = page.locator(`//li/a[contains(text(),'${signInUser.username}')]`);
+        this.usernameLink = page.locator(selectors.navbar.usernameLink);
     }
 
     async goTo(){
