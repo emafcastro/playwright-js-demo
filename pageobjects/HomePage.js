@@ -31,4 +31,12 @@ export class HomePage {
         }
         return answer;
     }
+
+    async clickOnTagWithName(name){
+        await this.popularTagsSection.locator("a", {hasText: `${name}`}).click();
+    }
+
+    async getListOfTagsFromArticles(articles){
+        return articles.locator("li.tag-pill");
+    }
 }

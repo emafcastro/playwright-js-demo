@@ -1,0 +1,10 @@
+{
+    "new-article":"/new/",
+    "settings":"/settings/",
+    "home":"/",
+    "user":"/profile/",
+    "contact-us":"/contact/",
+    "signout":"/",
+    "signin":"/login/",
+    "signup":"/register/"
+}
