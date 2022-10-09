@@ -1,10 +1,34 @@
-{
-    "new-article":"/new/",
-    "settings":"/settings/",
-    "home":"/",
-    "user":"/profile/",
-    "contact-us":"/contact/",
-    "signout":"/",
-    "signin":"/login/",
-    "signup":"/register/"
-}
+[
+    {
+        "page": "new-article",
+        "url": "/new/"
+    },
+    {
+        "page": "settings",
+        "url": "/settings/"
+    },
+    {
+        "page": "home",
+        "url": "/"
+    },
+    {
+        "page": "user",
+        "url": "/profile/"
+    },
+    {
+        "page": "contact-us",
+        "url": "/contact/"
+    },
+    {
+        "page": "signout",
+        "url": "/"
+    },
+    {
+        "page": "signin",
+        "url": "/login/"
+    },
+    {
+        "page": "signup",
+        "url": "/register/"
+    }
+]

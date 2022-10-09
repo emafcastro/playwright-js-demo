@@ -9,10 +9,11 @@ const pagesURLS = require("../input-files/pagesUrls.json");
 import { NavBarPage } from "../pageobjects/NavBarPage";
 import { HomePage } from "../pageobjects/HomePage";
 import { getIDFromURL } from "../utils/ArticleProperties";
-const config = require("../playwright.config");
 
 test.describe("Home tests", () => {
     let page;
+    let navBarPage;
+    let homePage;
     test.beforeAll(async ({ browser }) => {
         // Log in user.
         const context = await browser.newContext();
@@ -20,12 +21,13 @@ test.describe("Home tests", () => {
         const signInAPI = new SignInAPI(page);
         const signInResponse = await signInAPI.signInUser(homeUser);
         expect(signInResponse.ok()).toBeTruthy();
+        navBarPage = new NavBarPage(page);
+        homePage = new HomePage(page);
     });
 
     test.describe("Involving article creation as precondition", () => {
         let articleAPI;
         let articleURL;
-        let navBarPage;
 
         test.beforeEach(async () => {
             // Create an article before each test
@@ -48,11 +50,8 @@ test.describe("Home tests", () => {
         test("should be able to see my feed", async () => {
             // Check all articles in 'my feed' belong to the logged user
             await navBarPage.goTo();
-            const homePage = new HomePage(page);
             await homePage.yourFeedLink.click();
-            expect(
-                await homePage.allAuthorLinksHaveText(homeUser.username)
-            ).toBeTruthy();
+            expect(await homePage.allAuthorLinksHaveText(homeUser.username)).toBeTruthy();
         });
 
         test("should be able to like an Article with a different user", async () => {
@@ -62,7 +61,6 @@ test.describe("Home tests", () => {
             const signInResponse = await signInAPI.signInUser(likeUser);
             expect(signInResponse.ok()).toBeTruthy();
             await navBarPage.goTo();
-            const homePage = new HomePage(page);
             const firstPostLikeButton = await homePage.getFirstPostLikeButton();
             firstPostLikeButton.click();
             await page.waitForLoadState("networkidle");
@@ -73,7 +71,6 @@ test.describe("Home tests", () => {
             // Create an article and search for a different criteria, the message "No article found" should be displayed
             await navBarPage.goTo();
             await navBarPage.searchArticle("Nonexistent");
-            const homePage = new HomePage(page);
             await expect(homePage.noArticlesFoundText).toBeVisible();
             await expect(homePage.noArticlesFoundText).toHaveText("No articles found");
         });
@@ -81,7 +78,6 @@ test.describe("Home tests", () => {
         test("should hide article headers when searching and display it when clearing results", async () => {
             await navBarPage.goTo();
             await navBarPage.searchArticle("Test");
-            const homePage = new HomePage(page);
             await expect(homePage.yourFeedLink).not.toBeVisible();
             await expect(homePage.globalFeedLink).not.toBeVisible();
             await expect(homePage.clearResultsLink).toBeVisible();
@@ -105,7 +101,6 @@ test.describe("Home tests", () => {
 
         test("should be able to search for articles", async () => {
             // Create two different articles and search one, the results should at least bring up the created article
-            const navBarPage = new NavBarPage(page);
             await navBarPage.goTo();
             await navBarPage.searchArticle("Edited");
             const homePage = new HomePage(page);
@@ -115,8 +110,6 @@ test.describe("Home tests", () => {
         test("should be able to verify if the count of articles decreases when an article is deleted", async () => {
             // create and delete an article, checking before and after the length of the list of articles
             let thirdArticleURL = await articleAPI.createArticle(article);
-            const homePage = new HomePage(page);
-            const navBarPage = new NavBarPage(page);
             await navBarPage.goTo();
             const totalOfPosts = await homePage.posts.count();
 
@@ -126,14 +119,12 @@ test.describe("Home tests", () => {
             const newTotalOfPost = await homePage.posts.count();
 
             expect(totalOfPosts).toBeGreaterThan(newTotalOfPost);
-            expect(newTotalOfPost).toBe(totalOfPosts-1);
+            expect(newTotalOfPost).toBe(totalOfPosts - 1);
         });
 
         test("should be able to filter by tag", async () => {
             // This test create a new article with a different tag, then verify the filter by tag
-            const navBarPage = new NavBarPage(page);
             await navBarPage.goTo();
-            const homePage = new HomePage(page);
             await homePage.clickOnTagWithName(editedArticle.tags);
             const tags = await homePage.getListOfTagsFromArticles(homePage.posts);
             expect(await tags.allTextContents()).toContainEqual(editedArticle.tags);
@@ -155,11 +146,9 @@ test.describe("Home tests", () => {
 
     test("should be able to log out", async () => {
         // Sign out and check the user is no longer logged in
-        const navBarPage = new NavBarPage(page);
         await navBarPage.goTo();
         await navBarPage.signOutUser();
         await expect(navBarPage.signUpLink).toBeVisible();
-
     });
 
     test("should be able to access all links in navbar", async () => {
@@ -169,31 +158,42 @@ test.describe("Home tests", () => {
         const signInResponse = await signInAPI.signInUser(homeUser);
         expect(signInResponse.ok()).toBeTruthy();
 
-        const navBarPage = new NavBarPage(page);
         await navBarPage.goTo();
-        await navBarPage.goToNewArticlePage();
-        await expect(page).toHaveURL(pagesURLS["new-article"]);
 
-        await navBarPage.goToSettingsPage();
-        await expect(page).toHaveURL(pagesURLS.settings);
+        for (let element of pagesURLS) {
+            switch (element.page) {
+                case "new-article":
+                    await navBarPage.goToNewArticlePage();
+                    break;
+                case "settings":
+                    await navBarPage.goToSettingsPage();
+                    break;
+                case "home":
+                    await navBarPage.goToHomePage();
+                    break;
+                case "contact-us":
+                    await navBarPage.goToContactUsPage();
+                    break;
+                case "signout":
+                    await navBarPage.signOutUser();
+                    break;
+                case "signin":
+                    await navBarPage.goToSignInPage();
+                    break;
+                case "signup":
+                    await navBarPage.goToSignUpPage();
+                    break;
+            }
 
-        await navBarPage.goToHomePage();
-        await expect(page).toHaveURL(pagesURLS.home);
-
-        let regexUser = new RegExp(pagesURLS.user);
-        await navBarPage.goToProfilePage();
-        await expect(page).toHaveURL(regexUser);
-
-        await navBarPage.goToContactUsPage();
-        await expect(page).toHaveURL(pagesURLS["contact-us"]);
-
-        await navBarPage.signOutUser();
-        await expect(page).toHaveURL(pagesURLS.signout);
-
-        await navBarPage.goToSignInPage();
-        await expect(page).toHaveURL(pagesURLS.signin);
-
-        await navBarPage.goToSignUpPage();
-        await expect(page).toHaveURL(pagesURLS.signup);
+            // Going to profile has a dynamic url so the verification must be different
+            if(element.page === "user"){
+                let regexUser = new RegExp(pagesURLS.user);
+                await navBarPage.goToProfilePage();
+                await expect(page).toHaveURL(regexUser);
+            }
+            else {
+                await expect(page).toHaveURL(element.url);
+            }
+        }
     });
 });
