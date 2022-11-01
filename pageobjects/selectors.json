@@ -1,13 +1,14 @@
 {
     "home": {
         "yourFeedLink": "//a[contains(text(),'Your Feed')]",
+        "yourFeedActiveLink":"//a[contains(@class,'active')][text()='Your Feed']",
         "globalFeedLink": "//a[contains(text(),'Global Feed')]",
         "authorLinks": "div.article-preview > div.article-meta a",
         "posts": ".article-preview",
         "favoriteButtons": "//button[contains(@id,'favorite')]",
         "popularTagsSection": ".sidebar",
-        "noArticlesFoundText":"#no-articles > h4",
-        "clearResultsLink":"#result > h3 > a"
+        "noArticlesFoundText": "#no-articles > h4",
+        "clearResultsLink": "#result > h3 > a"
     },
     "navbar": {
         "homeLink": "//li/a[contains(text(),'Home')]",
@@ -75,5 +76,17 @@
         "followUserButton": "",
         "myArticlesLink": "",
         "favoritedArticlesLink": ""
+    },
+    "contact-us": {
+        "firstNameInput": "#id_first_name",
+        "lastNameInput": "#id_last_name",
+        "emailInput": "#id_email",
+        "countrySelect": "#id_countries",
+        "messageInput": "#id_message",
+        "conditionsCheckbox": "#id_terms",
+        "submitButton": "button[type=submit]"
+    },
+    "terms": {
+        "title": "//h2[contains(@text,Terms)]"
     }
 }

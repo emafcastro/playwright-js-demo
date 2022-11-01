@@ -1,12 +1,12 @@
-const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/test";
 import { SignInAPI } from "../api/SignInAPI";
 import { ArticleAPI } from "../api/ArticleAPI";
 import { ArticleDetailPage } from "../pageobjects/ArticleDetailPage";
 import { HomePage } from "../pageobjects/HomePage";
-const article = require("../input-files/article.json");
-const editArticle = require("../input-files/articleEdit.json");
-const detailUser = require("../input-files/detailUser.json");
-const likeUser = require("../input-files/likeUser.json");
+import article from "../input-files/article.json";
+import editArticle from "../input-files/articleEdit.json";
+import detailUser from "../input-files/detailUser.json";
+import likeUser from "../input-files/likeUser.json";
 import { getTodayDate } from "../utils/ArticleProperties";
 import { ArticleFormPage } from "../pageobjects/ArticleFormPage";
 
@@ -66,7 +66,7 @@ test.describe("Article detail tests", () => {
             page.on("dialog", (dialog) => dialog.accept());
             await articleDetailPage.deletePostButton.first().click();
             const homePage = new HomePage(page);
-            expect(await homePage.getFirstPostTitle()).not.toBe(editArticle.title);
+            expect(await homePage.getFirstPostTitle()).not.toBe(article.title);
         });
     });
 

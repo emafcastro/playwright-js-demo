@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { SignInAPI } from "../api/SignInAPI";
 import { ArticleAPI } from "../api/ArticleAPI";
-const homeUser = require("../input-files/homeUser.json");
-const likeUser = require("../input-files/likeUser.json");
-const article = require("../input-files/article.json");
-const editedArticle = require("../input-files/articleEdit.json");
-const pagesURLS = require("../input-files/pagesUrls.json");
+import homeUser from "../input-files/homeUser.json";
+import likeUser from "../input-files/likeUser.json";
+import article from "../input-files/article.json";
+import editedArticle from "../input-files/articleEdit.json";
+import pagesURLS from "../input-files/pagesUrls.json";
 import { NavBarPage } from "../pageobjects/NavBarPage";
 import { HomePage } from "../pageobjects/HomePage";
 import { getIDFromURL } from "../utils/ArticleProperties";
@@ -51,6 +51,7 @@ test.describe("Home tests", () => {
             // Check all articles in 'my feed' belong to the logged user
             await navBarPage.goTo();
             await homePage.yourFeedLink.click();
+            await homePage.yourFeedActiveLink.waitFor();
             expect(await homePage.allAuthorLinksHaveText(homeUser.username)).toBeTruthy();
         });
 

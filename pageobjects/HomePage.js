@@ -1,9 +1,10 @@
-const selectors = require("./selectors.json");
+import selectors from "./selectors.json";
 
 export class HomePage {
     constructor(page) {
         this.page = page;
         this.yourFeedLink = page.locator(selectors.home.yourFeedLink);
+        this.yourFeedActiveLink = page.locator(selectors.home.yourFeedActiveLink);
         this.posts = page.locator(selectors.home.posts);
         this.globalFeedLink = page.locator(selectors.home.globalFeedLink);
         this.authorLinks = page.locator(selectors.home.authorLinks);

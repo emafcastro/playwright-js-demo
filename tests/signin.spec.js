@@ -1,9 +1,9 @@
-const { test, expect } = require("@playwright/test");
-const { generateEmailForCharacters } = require("./../utils/TextGenerator");
+import { test, expect } from "@playwright/test";
+import { generateEmailForCharacters } from "./../utils/TextGenerator";
 import { SignInPage } from "../pageobjects/SignInPage";
 import { NavBarPage } from "../pageobjects/NavBarPage";
-const signInUser = require("../input-files/signInUser.json");
-const config = require("../playwright.config");
+import signInUser from "../input-files/signInUser.json";
+import config from "../playwright.config";
 
 
 test.describe("Login access", () => {

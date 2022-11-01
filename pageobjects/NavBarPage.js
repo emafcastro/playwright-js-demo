@@ -1,5 +1,5 @@
-const selectors = require("./selectors.json");
-const signInUser = require("../input-files/signInUser.json");
+import selectors from "./selectors.json";
+import signInUser from "../input-files/signInUser.json";
 
 export class NavBarPage{
     constructor(page){

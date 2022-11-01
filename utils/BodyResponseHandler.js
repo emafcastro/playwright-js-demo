@@ -1,4 +1,4 @@
-const jsdom = require("jsdom");
+import jsdom from "jsdom";
 export async function existErrorMessage(response) {
     let text = await response.text();
     const dom = new jsdom.JSDOM(text);

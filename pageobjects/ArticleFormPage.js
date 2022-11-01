@@ -1,4 +1,4 @@
-const selectors = require("./selectors.json");
+import selectors from "./selectors.json";
 
 export class ArticleFormPage{
     constructor(page){

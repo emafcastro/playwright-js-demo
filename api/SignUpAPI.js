@@ -1,6 +1,6 @@
 import { SessionHandler } from "../session/SessionHandler";
 import { logResponse } from "../utils/LogGenerator";
-const config = require("../playwright.config");
+import config from "../playwright.config";
 
 export class SignUpAPI {
     constructor(page) {

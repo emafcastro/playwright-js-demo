@@ -1,4 +1,4 @@
-const config = require("../playwright.config");
+import config from "../playwright.config";
 import { logResponse } from "../utils/LogGenerator";
 
 export class ArticleAPI {

@@ -1,14 +1,14 @@
-const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/test";
 import { NavBarPage } from "../pageobjects/NavBarPage";
 import { ArticleFormPage } from "../pageobjects/ArticleFormPage";
 import { ArticleDetailPage } from "../pageobjects/ArticleDetailPage";
 import { SignInAPI } from "../api/SignInAPI";
 import { maketoken } from "../utils/TextGenerator";
 import { ArticleAPI } from "../api/ArticleAPI";
-const article = require("../input-files/article.json");
-const articleOptionals = require("../input-files/articleOptionals.json");
-const authorUser = require("../input-files/authorUser.json");
-const config = require("../playwright.config");
+import article from "../input-files/article.json";
+import articleOptionals from "../input-files/articleOptionals.json";
+import authorUser from "../input-files/authorUser.json";
+import config from "../playwright.config";
 
 test.describe("Article tests", () => {
     let page;

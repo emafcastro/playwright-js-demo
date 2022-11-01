@@ -1,0 +1,7 @@
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@mail.com",
+    "country": "Argentina",
+    "message": "This is a message from John Doe"
+}

@@ -6,10 +6,11 @@ const authorUser = require("./input-files/authorUser.json");
 const likeUser = require("./input-files/likeUser.json");
 const signInUser = require("./input-files/signInUser.json");
 const homeUser = require("./input-files/homeUser.json");
+const contactUser = require("./input-files/contactUser.json");
 import { existErrorMessage } from "./utils/BodyResponseHandler";
 
 module.exports = async (config) => {
-    const users = [ authorUser, signInUser, likeUser, detailUser, homeUser ];
+    const users = [ authorUser, signInUser, likeUser, detailUser, homeUser, contactUser ];
     for (let user of users){
         const browser = await chromium.launch();
         const page = await browser.newPage();
