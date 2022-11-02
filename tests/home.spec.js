@@ -187,12 +187,11 @@ test.describe("Home tests", () => {
             }
 
             // Going to profile has a dynamic url so the verification must be different
-            if(element.page === "user"){
+            if (element.page === "user") {
                 let regexUser = new RegExp(pagesURLS.user);
                 await navBarPage.goToProfilePage();
                 await expect(page).toHaveURL(regexUser);
-            }
-            else {
+            } else {
                 await expect(page).toHaveURL(element.url);
             }
         }

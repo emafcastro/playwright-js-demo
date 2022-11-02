@@ -84,7 +84,8 @@
         "countrySelect": "#id_countries",
         "messageInput": "#id_message",
         "conditionsCheckbox": "#id_terms",
-        "submitButton": "button[type=submit]"
+        "submitButton": "button[type=submit]",
+        "termsLink": "//a[contains(@href,'terms')]"
     },
     "terms": {
         "title": "//h2[contains(@text,Terms)]"
